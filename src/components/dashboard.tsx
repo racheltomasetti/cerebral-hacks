@@ -6,23 +6,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Home, Calendar, Utensils, Activity, Lightbulb, Send } from 'lucide-react'
+import ChatbotMessages from './chatbot-messages'
 
 // Mock data for the hormone trend graph
 const hormoneData = [
-  { day: 1, estrogen: 30, progesterone: 5, testosterone: 15 },
-  { day: 7, estrogen: 100, progesterone: 5, testosterone: 20 },
-  { day: 14, estrogen: 150, progesterone: 10, testosterone: 25 },
-  { day: 21, estrogen: 80, progesterone: 120, testosterone: 18 },
-  { day: 28, estrogen: 40, progesterone: 60, testosterone: 15 },
+  { day: 1, estrogen: 30, progesterone: 5},
+  { day: 7, estrogen: 100, progesterone: 5},
+  { day: 14, estrogen: 150, progesterone: 10},
+  { day: 21, estrogen: 80, progesterone: 120},
+  { day: 28, estrogen: 40, progesterone: 60},
 ]
+
 
 export default function Dashboard() {
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen">
       {/* Side Navigation */}
       <nav className="w-64 bg-white shadow-md">
         <div className="p-4">
-          <h2 className="text-2xl font-bold text-primary mb-6">CycleSync</h2>
+          <h2 className="text-2xl font-bold text-primary mb-6">KI</h2>
           <ul className="space-y-2">
             <NavItem icon={<Home size={20} />} label="Home" active />
             <NavItem icon={<Calendar size={20} />} label="Cycle Tracker" />
@@ -34,11 +36,11 @@ export default function Dashboard() {
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 p-8 overflow-auto">
-        <h1 className="text-3xl font-bold mb-6 text-primary">Your Cycle Dashboard</h1>
+      <main className="flex-1 p-8 overflow-auto ">
+        <h1 className="text-3xl font-bold mb-6 text-primary">Welcome, Rachel!</h1>
 
         {/* Hormone Trend Graph */}
-        <Card className="mb-6">
+        <Card className="mb-6 shadow-lg shadow-cyan-500/50">
           <CardHeader>
             <CardTitle>Hormone Trends</CardTitle>
           </CardHeader>
@@ -49,10 +51,11 @@ export default function Dashboard() {
                 <XAxis dataKey="day" label={{ value: 'Day of Cycle', position: 'insideBottom', offset: -5 }} />
                 <YAxis label={{ value: 'Hormone Levels', angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
+                
                 <Legend />
+                
                 <Line type="monotone" dataKey="estrogen" stroke="#8884d8" name="Estrogen" />
                 <Line type="monotone" dataKey="progesterone" stroke="#82ca9d" name="Progesterone" />
-                <Line type="monotone" dataKey="testosterone" stroke="#ffc658" name="Testosterone" />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -69,16 +72,11 @@ export default function Dashboard() {
 
       {/* Chatbot Panel */}
       <aside className="w-80 bg-white shadow-md p-4">
-        <h2 className="text-xl font-bold mb-4 text-primary">CycleSync Assistant</h2>
+        <h2 className="text-xl font-bold mb-4 text-primary">KI Assistant</h2>
         <div className="h-[calc(100vh-8rem)] overflow-auto mb-4 bg-gray-50 rounded p-2">
-          {/* Chat messages would go here */}
+          <ChatbotMessages />
         </div>
-        <div className="flex">
-          <Input placeholder="Ask a question..." className="flex-grow mr-2" />
-          <Button size="icon">
-            <Send size={20} />
-          </Button>
-        </div>
+        
       </aside>
     </div>
   )
@@ -118,7 +116,6 @@ function HormoneProfile() {
       <ul className="mt-2 space-y-1">
         <li>Estrogen: Rising</li>
         <li>Progesterone: Low</li>
-        <li>Testosterone: Stable</li>
       </ul>
     </div>
   )
