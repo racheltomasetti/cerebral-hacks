@@ -60,11 +60,13 @@ export default function ChatbotMessages() {
         const botMessage: Message = {
           id: messages.length + 2,
           text: ai_res,
+
           sender: 'bot',
           timestamp: new Date(),
         };
         setMessages(prevMessages => [...prevMessages, botMessage]);
       }, 5000);
+
   };
 
   return (
@@ -109,6 +111,7 @@ export default function ChatbotMessages() {
             className="flex-grow"
           />
           <Button type="submit"  size="icon">
+
             <Send className="h-4 w-4" />
           </Button>
         </form>
