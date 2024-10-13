@@ -79,7 +79,7 @@ export default function ChatbotMessages() {
             e.preventDefault();
             handleSendMessage();
           }}
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-2 bg-card rounded-lg"
         >
           <Input
             type="text"
@@ -88,7 +88,7 @@ export default function ChatbotMessages() {
             onChange={(e) => setNewMessage(e.target.value)}
             className="flex-grow"
           />
-          <Button type="submit" size="icon">
+          <Button type="submit" size="icon" >
             <Send className="h-4 w-4" />
           </Button>
         </form>

@@ -5,8 +5,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Home, Calendar, Utensils, Activity, Lightbulb, Send } from 'lucide-react'
+import { Home, Calendar, Utensils, Activity, Lightbulb, Send,Users, Settings, TrendingUp } from 'lucide-react'
 import ChatbotMessages from './chatbot-messages'
+import Aura from '@/components/aura.png'
 
 // Mock data for the hormone trend graph
 const hormoneData = [
@@ -20,27 +21,43 @@ const hormoneData = [
 
 export default function Dashboard() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-custom-color">
       {/* Side Navigation */}
       <nav className="w-64 bg-white shadow-md">
-        <div className="p-4">
-          <h2 className="text-2xl font-bold text-primary mb-6">KI</h2>
+        <div className="p-4 pt-2">
+          <div className="relative w-20 h-20">
+          {/* Image */}
+          <img 
+            src={Aura.src}
+            alt="Description" 
+            className="w-full h-auto"
+            width={50}
+            height={50}
+          />
+          
+          {/* Text overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h2 className="text-white text-3xl font-bold italic bg-black bg-opacity-50 p-4">
+              ki
+            </h2>
+          </div>
+        </div>
           <ul className="space-y-2">
             <NavItem icon={<Home size={20} />} label="Home" active />
-            <NavItem icon={<Calendar size={20} />} label="Cycle Tracker" />
-            <NavItem icon={<Utensils size={20} />} label="Nutrition" />
-            <NavItem icon={<Activity size={20} />} label="Exercise" />
-            <NavItem icon={<Lightbulb size={20} />} label="Insights" />
+            <NavItem icon={<Calendar size={20} />} label="Calendar" />
+            <NavItem icon={<TrendingUp size={20} />} label="Trends" />
+            <NavItem icon={<Users size={20} />} label="Community" />
+            <NavItem icon={<Settings size={20} />} label="Settings" />
           </ul>
         </div>
       </nav>
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-auto ">
-        <h1 className="text-3xl font-bold mb-6 text-primary">Welcome, Rachel!</h1>
+        <h1 className="text-3xl font-bold mb-6 text-primary">Welcome Back, <em>Rachel!</em></h1>
 
         {/* Hormone Trend Graph */}
-        <Card className="mb-6 shadow-lg shadow-cyan-500/50">
+        <Card className="mb-6 bg-card shadow-xl">
           <CardHeader>
             <CardTitle>Hormone Trends</CardTitle>
           </CardHeader>
@@ -51,11 +68,9 @@ export default function Dashboard() {
                 <XAxis dataKey="day" label={{ value: 'Day of Cycle', position: 'insideBottom', offset: -5 }} />
                 <YAxis label={{ value: 'Hormone Levels', angle: -90, position: 'insideLeft' }} />
                 <Tooltip />
-                
                 <Legend />
-                
                 <Line type="monotone" dataKey="estrogen" stroke="#8884d8" name="Estrogen" />
-                <Line type="monotone" dataKey="progesterone" stroke="#82ca9d" name="Progesterone" />
+                <Line type="monotone" dataKey="progesterone" stroke="#FF69B4" name="Progesterone" />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -71,8 +86,8 @@ export default function Dashboard() {
       </main>
 
       {/* Chatbot Panel */}
-      <aside className="w-80 bg-white shadow-md p-4">
-        <h2 className="text-xl font-bold mb-4 text-primary">KI Assistant</h2>
+      <aside className="w-80 bg-white shadow-md p-4 ">
+        <h2 className="text-xl font-bold mb-4 text-primary pl-10"><em>Understand Your Cycle</em></h2>
         <div className="h-[calc(100vh-8rem)] overflow-auto mb-4 bg-gray-50 rounded p-2">
           <ChatbotMessages />
         </div>
@@ -100,8 +115,8 @@ function NavItem({ icon, label, active = false }: { icon: React.ReactNode; label
 
 function Widget({ title, content }: { title: string; content: React.ReactNode }) {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="shadow-2xl bg-card ">
+      <CardHeader >
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>{content}</CardContent>
